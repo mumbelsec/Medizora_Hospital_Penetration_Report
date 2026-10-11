@@ -1,9 +1,7 @@
 # Medizora_Hospital_Penetration_Test_Report
-Black box penetration result
+**Test_type:** Black box penetration result
 
 **Target:** medizorahospital.com
-
-**Prepared by:** mumbelsec
 
 **Classification:** Confidential
 
