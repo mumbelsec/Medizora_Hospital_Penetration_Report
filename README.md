@@ -88,3 +88,17 @@ username: admin’ --
 password: anything
 
 The password check is ignored completely. The query returns the admin row and I am logged in.
+
+#### **3.4 Finding 3 — Confidential PDFs Accessible After Login Bypass**
+
+**Risk Rating:** High
+**Location:** `patient/reports/`
+
+**Steps Taken**
+
+After logging in with the SQL injection payload, I was directed to the patient portal which listed three downloadable PDF files:
+patient_report_1.pdf
+patient_report_2.pdf
+patient_report_3.pdf
+
+I downloaded all three files.
