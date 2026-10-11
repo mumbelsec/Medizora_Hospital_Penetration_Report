@@ -66,7 +66,7 @@ password: test123
 
 The two different messages confirmed that `admin` is a valid account on the system. I now had the username and only needed to find the password.
 
-#### **3.3 Finding 2 — SQL Injection Login Bypass**
+#### **3.3 Discovery 2 — SQL Injection Login Bypass**
 
 **Risk Rating:** Critical
 **Location:** `patient/login.php`
@@ -89,7 +89,7 @@ password: anything
 
 The password check is ignored completely. The query returns the admin row and I am logged in.
 
-#### **3.4 Finding 3 — Confidential PDFs Accessible After Login Bypass**
+#### **3.4 Discovery 3 — Confidential PDFs Accessible After Login Bypass**
 
 **Risk Rating:** High
 **Location:** `patient/reports/`
@@ -106,7 +106,7 @@ patient_report_3.pdf
 
 I downloaded all three files.
 
-#### **3.5 Finding 4 — Weak PDF Passwords Crackable with a Wordlist**
+#### **3.5 Discovery 4 — Weak PDF Passwords Crackable with a Wordlist**
 
 **Risk Rating:** High
 
@@ -119,7 +119,7 @@ Report 3 did not crack with the built-in list. I switched to a larger wordlist (
 
 I then opened each PDF with its cracked password and read the confidential patient medical data inside.
 
-#### **3.6 Finding 5 — Sensitive Metadata in Patient PDF Files**
+#### **3.6 Discovery 5 — Sensitive Metadata in Patient PDF Files**
 
 **Risk Rating:** Medium
 
@@ -132,7 +132,7 @@ The metadata revealed the author name and a comment:
 ```
 Comments: DB backup moved to /old before site migration, do not delete
 ```
-#### **3.7 Finding 6 — Forgotten Backup Folder with Directory Listing Enabled**
+#### **3.7 Discovery 6 — Forgotten Backup Folder with Directory Listing Enabled**
 
 **Risk Rating:** Critical
 
@@ -146,7 +146,7 @@ mediroza_db_backup_2019.sql
 I downloaded it using `wget`:
 wget https://medirozahospital.com/old/mediroza_db_backup_2019.sql
 
-#### **3.8 Finding 7 — Confidential Staff Salaries and Shareholder Data in Plain Text**
+#### **3.8 Discovery 7 — Confidential Staff Salaries and Shareholder Data in Plain Text**
 
 **Risk Rating:** Critical
 
