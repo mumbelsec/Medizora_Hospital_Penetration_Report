@@ -29,7 +29,8 @@ The assessment was conducted strictly on the target domain. Any testing outside 
 - **exiftool** — for reading hidden metadata from PDF files
 - **wget** — for downloading files from the web server
 - **ChatGPT** — for converting raw SQL data into readable tables
-
+- 
+### **3. Findings and Proof of Exploitation**
 #### **3.1 Summary Table**
 
 | # | Vulnerability | Location | Risk |
