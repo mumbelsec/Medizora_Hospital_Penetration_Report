@@ -1,5 +1,5 @@
 # Medizora_Hospital_Penetration_Test_Report
-**Test_type:** Black box penetration result
+**Test_type:** Black box penetration
 
 **Target:** medizorahospital.com
 
@@ -208,3 +208,8 @@ Disable directory listing on all folders by adding `Options -Indexes` to the Apa
 ### **6. Conclusion**
 
 This assessment found a complete attack chain from the login page to highly sensitive internal data. No sophisticated tools or knowledge were required. All vulnerabilities found in this report are well-known and have well-established fixes. I recommend the client address all Critical and High findings immediately before the system is used to store or serve real patient data.
+
+### **Author**
+
+**mumbelsec**
+NW/BO83/Cybersecurity
