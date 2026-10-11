@@ -218,3 +218,5 @@ BO83/Cybersecurity
 WEEK4 FINAL PROJECT
 
 *Organization:* Networkwalks
+
+🔗 **LinkedIn Post:** [Week 4 – Black-Box Penetration Test on Mediroza Hospital](https://www.linkedin.com/pulse/week-4-black-box-penetration-test-mediroza-hospital-ibrahim-muhammad-1iw4f)
