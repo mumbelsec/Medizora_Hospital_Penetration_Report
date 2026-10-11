@@ -42,3 +42,24 @@ The assessment was conducted strictly on the target domain. Any testing outside 
 | 5 | Sensitive metadata left in patient PDF files | `patient_report_3.pdf` | ![Medium](https://img.shields.io/badge/Medium-blue) |
 | 6 | Forgotten backup folder with directory listing enabled | `old/` | ![Critical](https://img.shields.io/badge/Critical-red) |
 | 7 | Confidential staff salaries and shareholder data in plain text | `old/mediroza_db_backup_2019.sql` | ![Critical](https://img.shields.io/badge/Critical-red) |
+
+#### **3.2 Discovery 1 — Username Enumeration**
+
+**Risk Rating:** Medium
+**Location:** `patient/login.php`
+
+**Steps Taken**
+
+I opened the patient portal login page and tested the error messages by entering different inputs.
+
+First, I entered a username that I assumed would not exist:
+username: bob
+password: test123
+**Response:** `Username not found`
+
+Then I tried a common default username:
+username: admin
+password: test123
+**Response:** `Incorrect password`
+
+The two different messages confirmed that `admin` is a valid account on the system. I now had the username and only needed to find the password.
