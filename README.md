@@ -145,3 +145,19 @@ mediroza_db_backup_2019.sql
 
 I downloaded it using `wget`:
 wget https://medirozahospital.com/old/mediroza_db_backup_2019.sql
+
+#### **3.8 Finding 7 — Confidential Staff Salaries and Shareholder Data in Plain Text**
+
+**Risk Rating:** Critical
+
+**Steps Taken**
+
+I opened the SQL file in a text editor. The data was in raw SQL format. I copied the staff `INSERT INTO` rows and used ChatGPT to convert them into a readable table:
+Present this SQL data as a readable table showing name, job title, department and monthly salary.
+
+Then I did the same for the shareholders:
+Present this SQL data as a readable table showing shareholder name, share percentage and share class.
+
+I was able to read the private salary of every employee and the ownership structure of the entire hospital.
+
+I also confirmed that the Author field in the PDF metadata corresponds with the IT Systems Administrator listed in the staff table — connecting all three findings into a single attack chain.
