@@ -78,4 +78,13 @@ username: admin’
 password: test123
 
 **Response:**
+
 Warning: mysqli_query(): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ‘’’ at line 1
+
+The database error confirmed the field was injectable. The application was building its SQL query like this behind the scenes
+
+I then crafted the classic SQL injection bypass payload.
+username: admin’ --
+password: anything
+
+The password check is ignored completely. The query returns the admin row and I am logged in.
