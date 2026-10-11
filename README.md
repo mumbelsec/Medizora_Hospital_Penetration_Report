@@ -118,3 +118,17 @@ Reports 1 and 2 cracked immediately using the built-in 100-word default wordlist
 Report 3 did not crack with the built-in list. I switched to a larger wordlist (JTR default password list) and ran the attack again.
 
 I then opened each PDF with its cracked password and read the confidential patient medical data inside.
+
+#### **3.6 Finding 5 — Sensitive Metadata in Patient PDF Files**
+
+**Risk Rating:** Medium
+
+**Steps Taken**
+
+I first decrypted report 3 using `exiftool`, since it can read all metadata fields. A locked PDF only shows the encryption type.
+
+The metadata revealed the author name and a comment:
+
+```
+Comments: DB backup moved to /old before site migration, do not delete
+```
