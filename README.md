@@ -161,3 +161,52 @@ Present this SQL data as a readable table showing shareholder name, share percen
 I was able to read the private salary of every employee and the ownership structure of the entire hospital.
 
 I also confirmed that the Author field in the PDF metadata corresponds with the IT Systems Administrator listed in the staff table — connecting all three findings into a single attack chain.
+
+### **4. Full Attack Chain Summary**
+
+The following is the complete path from zero access to full data exposure, showing how each finding led to the next.
+
+- **Step 1:** Robots.txt revealed three hidden folders: `/patient`, `/staff`, and `/old`.
+- **Step 2:** The patient login page showed different error messages for wrong username and wrong password, confirming `admin` as a valid account. *(Finding 1)*
+- **Step 3:** A single quote in the username field triggered a database error, confirming SQL injection. *(Finding 2)*
+- **Step 4:** The payload `admin' --` bypassed the login entirely and gave access to the patient portal. *(Finding 2)*
+- **Step 5:** Three confidential patient PDF lab reports were downloaded from the portal. *(Finding 3)*
+- **Step 6:** The NetworkWalks Password Cracker cracked the PDF passwords using wordlists. Reports 1 and 2 used the built-in list; Report 3 required the larger JTR list. *(Finding 4)*
+- **Step 7:** `exiftool` on the unlocked Report 3 revealed a hidden comment by j.malik pointing to `/old`. *(Finding 5)*
+- **Step 8:** The `/old` folder had directory listing enabled, exposing the database backup. *(Finding 6)*
+- **Step 9:** The backup contained salaries of 30 employees and shareholding details of 10 shareholders in plain text. *(Finding 7)*
+
+- ### **5. Recommendations and Remediation**
+
+#### **5.1 Fix Username Enumeration**
+
+Change the login page to show a single generic message for any failed login attempt, regardless of whether the username or password was wrong. For example: *"Invalid credentials. Please try again."*
+
+#### **5.2 Fix SQL Injection**
+
+Replace the current login query with a parameterised query or prepared statement. This separates the SQL code from the user input so that no amount of crafted input can change the query structure. **This is the most important fix in this report.**
+
+```php
+// Safe example using PHP PDO prepared statement
+$stmt = $pdo->prepare("SELECT * FROM users WHERE username = ? AND password = ?");
+$stmt->execute([$username, $password]);
+```
+#### **5.3 Fix PDF Access and Password Strength**
+
+Move the PDF files outside the web root so they cannot be served directly by the web server. Enforce access through a server-side script that checks authentication before serving any file. If passwords are used, enforce a minimum length of 12 characters with a mix of uppercase, lowercase, numbers, and symbols.
+
+#### **5.4 Strip PDF Metadata**
+
+Remove all metadata from files before distributing them. Staff notes or internal comments must never be stored inside files that leave the organisation. Use the following command to strip all metadata:
+
+```bash
+exiftool -all= patient_report_3.pdf
+```
+
+#### **5.5 Fix Directory Listing and Remove the Backup**
+
+Disable directory listing on all folders by adding `Options -Indexes` to the Apache configuration or `.htaccess` file. Delete the database backup from the `/old` folder immediately. Database backups must never be stored inside the web root. Store them in a private, access-controlled location outside the publicly accessible part of the server.
+
+### **6. Conclusion**
+
+This assessment found a complete attack chain from the login page to highly sensitive internal data. No sophisticated tools or knowledge were required. All vulnerabilities found in this report are well-known and have well-established fixes. I recommend the client address all Critical and High findings immediately before the system is used to store or serve real patient data.
