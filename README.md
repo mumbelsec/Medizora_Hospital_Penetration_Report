@@ -132,3 +132,16 @@ The metadata revealed the author name and a comment:
 ```
 Comments: DB backup moved to /old before site migration, do not delete
 ```
+#### **3.7 Finding 6 — Forgotten Backup Folder with Directory Listing Enabled**
+
+**Risk Rating:** Critical
+
+**Steps Taken**
+
+During recon, I noted `/old` in the robots.txt file. The metadata clue from Finding 5 confirmed this was the location of the backup. I opened the folder in the browser:https://medirozahospital.com/old/
+
+The directory listing was enabled, and I could see the backup file immediately:
+mediroza_db_backup_2019.sql
+
+I downloaded it using `wget`:
+wget https://medirozahospital.com/old/mediroza_db_backup_2019.sql
