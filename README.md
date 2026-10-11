@@ -55,11 +55,27 @@ I opened the patient portal login page and tested the error messages by entering
 First, I entered a username that I assumed would not exist:
 username: bob
 password: test123
+
 **Response:** `Username not found`
 
 Then I tried a common default username:
 username: admin
 password: test123
+
 **Response:** `Incorrect password`
 
 The two different messages confirmed that `admin` is a valid account on the system. I now had the username and only needed to find the password.
+
+#### **3.3 Finding 2 — SQL Injection Login Bypass**
+
+**Risk Rating:** Critical
+**Location:** `patient/login.php`
+
+**Steps Taken**
+
+I tested the username field for SQL injection by typing a single quote:
+username: admin’
+password: test123
+
+**Response:**
+Warning: mysqli_query(): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ‘’’ at line 1
