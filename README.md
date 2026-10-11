@@ -105,3 +105,16 @@ patient_report_2.pdf
 patient_report_3.pdf
 
 I downloaded all three files.
+
+#### **3.5 Finding 4 — Weak PDF Passwords Crackable with a Wordlist**
+
+**Risk Rating:** High
+
+**Steps Taken**
+
+I used the NetworkWalks Hash Calculator to extract a crackable hash from each PDF, then ran each hash through the NetworkWalks Password Cracker.
+
+Reports 1 and 2 cracked immediately using the built-in 100-word default wordlist. 
+Report 3 did not crack with the built-in list. I switched to a larger wordlist (JTR default password list) and ran the attack again.
+
+I then opened each PDF with its cracked password and read the confidential patient medical data inside.
