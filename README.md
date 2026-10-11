@@ -20,3 +20,4 @@ curl https://medirozahospital.com/robots.txt
 ```
 
 **Output:**
+Disallow: /patient/ Disallow: /staff/ Disallow: /old/ 
