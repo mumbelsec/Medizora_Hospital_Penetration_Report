@@ -1,2 +1,2 @@
-# Medizora_Hospital_Penetration_Report
+# Medizora_Hospital_Penetration_Test_Report
 Black box penetration result
